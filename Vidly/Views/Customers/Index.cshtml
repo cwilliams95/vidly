@@ -1,10 +1,28 @@
 ﻿@model Vidly.ViewModels.CustomerViewModel
+
 @{
     ViewBag.Title = "Customers";
-    Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
 <h2>@ViewBag.Title.</h2>
 <h3>@ViewBag.Message</h3>
+@if (Model.Customers.Count == 0)
+{
+    <h4>We have no customers yet. </h4>
+}
 
-<p>Use this area to provide additional information.</p>
+else
+{
+    <table class="table table-bordered table-hover">
+        <tr>
+            <th>Customer</th>
+        </tr>
+        @{
+            foreach (var cust in Model.Customers)
+            {
+                <tr>
+                    <td><a href="Customers/Details/@cust.Id">@cust.Name</a></td>
+                </tr>
+            }
+        }
+    </table>
+            }

@@ -1,17 +1,26 @@
-﻿@{
+﻿@model Vidly.ViewModels.MovieViewModel
+
+@{
     ViewBag.Title = "Movies";
 }
 <h2>@ViewBag.Title.</h2>
 <h3>@ViewBag.Message</h3>
+@if (Model.Movies.Count == 0)
+{
+    <h4>There are currently no movies. </h4>
+}
 
-<address>
-    One Microsoft Way<br />
-    Redmond, WA 98052-6399<br />
-    <abbr title="Phone">P:</abbr>
-    425.555.0100
-</address>
-
-<address>
-    <strong>Support:</strong>   <a href="mailto:Support@example.com">Support@example.com</a><br />
-    <strong>Marketing:</strong> <a href="mailto:Marketing@example.com">Marketing@example.com</a>
-</address>
+else
+{
+    <table class="table table-bordered table-hover">
+        <tr>
+            <th>Movie</th>
+        </tr>
+        @{
+            foreach (var movie in Model.Movies)
+            {
+                <tr><td>@movie.Name</td></tr>
+            }
+        }
+    </table>
+}
