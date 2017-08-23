@@ -13,11 +13,7 @@ namespace Vidly.Controllers
         [Route("Customers/Details/{id}")]
         public ActionResult Details(int id)
         {
-            var customers = new List<Customer>
-            {
-                new Models.Customer { Name = "Mary Price", Id = 1},
-                new Models.Customer { Name = "Joe Schmo", Id = 2}
-            };
+            var customers = GetCustomers(); 
             
             var selected = customers.Where(cust => cust.Id == id);
             if (selected.Count() > 0)
@@ -28,16 +24,23 @@ namespace Vidly.Controllers
 
         public ActionResult Index(int? pageIndex, string sortBy)
         {
-            var customers = new List<Customer>
-            {
-                new Models.Customer { Name = "Mary Price", Id = 1},
-                new Models.Customer { Name = "Joe Schmo", Id = 2}
-            };
+            var customers = GetCustomers();
             var viewModel = new CustomerViewModel
             {
                 Customers = customers
             };
             return View(viewModel);
         }
+
+        private List<Customer> GetCustomers()
+        {
+            return new List<Customer>
+            {
+                new Models.Customer { Name = "Mary Price", Id = 1},
+                new Models.Customer { Name = "Joe Schmo", Id = 2}
+            };
+        }
+
+        //TODO getCustomers method 
     }
 }

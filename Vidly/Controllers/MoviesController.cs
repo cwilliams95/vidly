@@ -42,11 +42,7 @@ namespace Vidly.Controllers
                 sortBy = "Name";
             //return Content(String.Format("pageIndex={0}&sortBy={1}", pageIndex, sortBy));
 
-            var movies = new List<Movie>
-            {
-                new Models.Movie { Name = "Shrek", Id = 1},
-                new Models.Movie { Name = "FMJ", Id = 2}
-            };
+            var movies = GetMovies();
             var viewModel = new MovieViewModel { Movies = movies };
             return View(viewModel);
         }
@@ -55,6 +51,15 @@ namespace Vidly.Controllers
         public ActionResult ByReleaseDate(int year, int month)
         {
             return Content(year+"/"+month);
+        }
+
+        private List<Movie> GetMovies()
+        {
+            return new List<Movie>
+            {
+                new Models.Movie { Name = "Shrek", Id = 1},
+                new Models.Movie { Name = "FMJ", Id = 2}
+            };
         }
     }
 }
