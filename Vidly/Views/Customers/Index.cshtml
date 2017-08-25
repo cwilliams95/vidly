@@ -1,11 +1,11 @@
-﻿@model Vidly.ViewModels.CustomerViewModel
+﻿@model IEnumerable<Vidly.Models.Customer>
 
 @{
     ViewBag.Title = "Customers";
 }
 <h2>@ViewBag.Title.</h2>
 <h3>@ViewBag.Message</h3>
-@if (Model.Customers.Count == 0)
+@if (Model.Any() == false)
 {
     <h4>We have no customers yet. </h4>
 }
@@ -17,7 +17,7 @@ else
             <th>Customer</th>
         </tr>
         @{
-            foreach (var cust in Model.Customers)
+            foreach (var cust in Model)
             {
                 <tr>
                     <td><a href="Customers/Details/@cust.Id">@cust.Name</a></td>
